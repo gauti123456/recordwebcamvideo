@@ -30,7 +30,18 @@
     const recordBtn = document.getElementById('record')
 
     const startRecording = () => {
-        
+        const rec = new MediaRecorder(webcam.srcObject)
+        const chunks = []
+
+        recordBtn.textContent = "Stop Recording"
+
+        recordBtn.onclick = () => {
+            rec.stop()
+
+            recordBtn.textContent = "Start Recording"
+
+            recordBtn.onclick = startRecording
+        }
     }
 
     (async () => {
